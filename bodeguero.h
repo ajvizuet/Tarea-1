@@ -5,10 +5,10 @@
 struct producto {
   // en que bodega está
   char nombre[50];
-  int cantidad;
   char categoria[50];
   char marca[50];
   char codigo[50];
+  int cantidad;
   float precioCompra;
   float precioVenta;
   // local como nombre_

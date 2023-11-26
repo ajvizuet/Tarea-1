@@ -3,9 +3,9 @@
 
 // Definición de la estructura para registrar ventas
 struct venta {
-  char n_vendedor[20];
-  char fecha[20];
-  char local[20];
+  char n_vendedor[30];
+  char fecha[15];
+  char local[15];
 };
 
 extern int contVentas;
