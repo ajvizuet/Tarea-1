@@ -1,0 +1,5 @@
+admin,admin,123
+bodeguero,ventas1,123
+admin,admin2,123
+vendedor,ventas2,1234
+bodeguero,bodega1,123

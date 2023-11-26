@@ -2,6 +2,7 @@
 #include<string.h>
 #include "administrador.h"
 #include "usuarios.h"
+#include "fileManager.h"
 
 int contUsuarios = 0;
 struct user usuarios[100];
@@ -42,9 +43,8 @@ void crearUsuario() {
   scanf("%s", newUser.password);
   printf("Ingrese el tipo de usuario: ");
   scanf("%s", newUser.type);
-  usuarios[contUsuarios] = newUser;
-  //SE AUMENTA EL CONTADOR DE USUARIOS EN EL SISTEMA;
-  contUsuarios++;
+  agregarUsuario(newUser);
+  actualizarUsuarios(usuarios);
   menuAdministrador();
 }
 
@@ -73,6 +73,7 @@ void actualizarUsuario(char name[10]) {
       printf("Opcion invalida\n");
       break;
   }
+  actualizarUsuarios(usuarios);
   menuAdministrador();
 }
 
@@ -87,4 +88,11 @@ void imprimirUsuario(struct user u) {
 	printf("Nombre: %s\n", u.username);
 	printf("Tipo: %s\n", u.type);
 	printf("----------------------\n");
+}
+
+void agregarUsuario(struct user u) {
+	strcpy(usuarios[contUsuarios].type, u.type);
+	strcpy(usuarios[contUsuarios].username, u.username);
+	strcpy(usuarios[contUsuarios].password, u.password);
+	contUsuarios++;
 }

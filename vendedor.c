@@ -1,6 +1,7 @@
 #include "vendedor.h"
 // actualizar parte bodega
 #include "bodeguero.h"
+#include "fileManager.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -88,9 +89,8 @@ void registrarVenta() {
   printf("Ingrese el local que realiza la venta: ");
   scanf("%s", registroEnVentas.local);
   actualizarProdPorVenta(nombreP, cantidad);
-  ventas[contVentas] = registroEnVentas;
-  contVentas++;
-
+  agregarVenta(registroEnVentas);
+  actualizarVentas(ventas);
   menuVendedor();
 }
 
@@ -106,5 +106,10 @@ void imprimirVentas(struct venta v) {
   printf("local: %s\n", v.local);
   printf("fecha de venta: %s\n", v.fecha);
   printf("----------------------\n");
+}
+
+void agregarVenta(struct venta v) {
+	ventas[contVentas] = v;
+	contVentas++;
 }
 

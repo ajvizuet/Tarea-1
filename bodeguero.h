@@ -15,9 +15,11 @@ struct producto {
 };
 
 // ARREGLO CON TODOS LOS PRODUCTOS
-struct producto productos[50];
+extern int contProductos;
+extern struct producto productos[50];
 void menuBodeguero();
 void crearProducto();
+void agregarProducto(struct producto p);
 
 void actualizarRegistrosProducto(char nombreProducto[20]);
 

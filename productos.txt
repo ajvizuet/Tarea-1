@@ -1,0 +1,3 @@
+Leche,50,lacteos,Toni,32d3efcf2,0.60,2.30
+Galletas,80,Galletas,Choco,cdvr33ce2,0.25,0.85
+Zapato,150,Calzado,Nike,sc3c2crc2,23.00,102.00

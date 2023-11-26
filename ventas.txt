@@ -1,0 +1,3 @@
+Juan,02-02-2022,sur
+Alex,03-02-2022,norte
+Luis,05-06-2022,este

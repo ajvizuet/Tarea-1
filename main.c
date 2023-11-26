@@ -4,19 +4,33 @@
 #include "administrador.h"
 #include "bodeguero.h"
 #include "vendedor.h"
+#include "fileManager.h"
 #include "data.h"
 
 struct user actualUser;
 
 int verificarUsuario(char name[10], char pass[10]);
-void inicializarProductos();
-void inicializarUsuarios();
+void displayLogIn();
 
-int main(void) {
-  char name[10], pass[10];
-  inicializarUsuarios();
-  inicializarProductos();
+int main(int argc, char *argv[]) {
+  if(argc != 4) {
+  	fprintf(stderr, "Usage: %s\n", argv[0]);
+  	return 1;
+  }
+  fusers = argv[1];
+  fventas = argv[2];
+  fproductos = argv[3];
 
+  procesarUsuarios();
+  procesarVentas();
+  procesarProductos();
+  displayLogIn();
+
+}
+
+void displayLogIn() {
+  char name[10];
+  char pass[10];
   printf("Ingrese usuario: ");
   scanf("%s", name);
   printf("Contraseña: ");
@@ -31,8 +45,8 @@ int main(void) {
     }
   }else {
     printf("Usuario no existente en el sistema\n\n");
-    main();
-  }
+    displayLogIn();
+  }	
 }
 
 int verificarUsuario(char name[10], char pass[10]) {
@@ -45,39 +59,8 @@ int verificarUsuario(char name[10], char pass[10]) {
   return 0;
 }
 
-void inicializarProductos() {
-    for(int i = 0; i < 50; i++) {
-        struct producto prod;
 
-        // Asignar datos a prod (Ejemplo)
-        sprintf(prod.nombre, "Producto%d", i + 1);
-        prod.cantidad = 100; // Ejemplo de cantidad
-        strcpy(prod.categoria, "CategoriaEjemplo");
-        strcpy(prod.marca, "MarcaEjemplo");
-        sprintf(prod.codigo, "C%d", i + 1);
-        prod.precioCompra = i * 10.0; // Precio de compra ejemplo
-        prod.precioVenta = prod.precioCompra + 5.0; // Precio de venta ejemplo
 
-        // Guardar producto en el arreglo productos
-        productos[i] = prod;
-    }
-}
-/////////////////
-  void inicializarUsuarios(){
-    struct user usuariosEjemplo[10] = {
-        {"admin1", "123", "admin"},
-        {"admin2", "456", "admin"},
-        {"vendedor1", "123", "vendedor"},
-        {"vendedor2", "456", "vendedor"},
-        {"bodeguero1", "123", "bodeguero"},
-        {"bodeguero2", "456", "bodeguero"},
-        {"usuario1", "123", "usuario"},
-        {"usuario2", "456", "usuario"},
-        {"usuario3", "789", "usuario"},
-        {"usuario4", "159", "usuario"},
-    };
 
-  for(int i = 0; i < 10; i++) {
-        usuarios[contUsuarios++] = usuariosEjemplo[i];
-    }
-  }
+
+

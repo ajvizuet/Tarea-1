@@ -1,9 +1,12 @@
 #include "bodeguero.h"
+#include "fileManager.h"
 //#include "usuarios.h"
 #include <stdio.h>
 #include <string.h>
 
+struct producto productos[50];
 void imprimirProductos(struct producto prod);
+void mostrarProductos();
 int contProductos = 0;
 /*-------------------------------------------------------------------------*/
 void menuBodeguero() {
@@ -19,6 +22,7 @@ void menuBodeguero() {
   */
   printf("1. Crear Productos\n");
   printf("2. Actualizar Productos\n");
+  printf("3. Listar Productos\n");
   printf("Opcion a escoger: ");
   scanf("%d", &op);
 
@@ -47,6 +51,8 @@ void menuBodeguero() {
     */
     actualizarRegistrosProducto(nombre);
     break;
+  case 3:
+  	mostrarProductos();
   default:
     printf("Opcion invalida\n");
     break;
@@ -59,6 +65,8 @@ void crearProducto() {
   scanf("%s", nuevoProducto.nombre);
   printf("Ingrese la cantidad del producto: ");
   scanf("%d", &nuevoProducto.cantidad);
+  printf("Ingrese la categoria del producto: ");
+  scanf("%s", nuevoProducto.categoria);
   printf("Ingrese la marca del producto: ");
   scanf("%s", nuevoProducto.marca);
   printf("Ingrese la codigo del producto: ");
@@ -67,9 +75,8 @@ void crearProducto() {
   scanf("%f", &nuevoProducto.precioCompra);
   printf("Ingrese el precio de venta del producto: ");
   scanf("%f", &nuevoProducto.precioVenta);
-  productos[contProductos] = nuevoProducto;
-  contProductos++;
-  // SE AUMENTA EL CONTADOR DE PRODUCTOS EN EL SISTEMA
+  agregarProducto(nuevoProducto);
+  actualizarProductos(productos);
   menuBodeguero();
 }
 
@@ -127,6 +134,7 @@ void actualizarRegistrosProducto(char name[20]) {
     printf("Opcion invalida\n");
     break;
   }
+  actualizarProductos(productos);
   menuBodeguero();
 }
 void mostrarProductos() {
@@ -142,8 +150,8 @@ void imprimirProductos(struct producto prod) {
   printf("Categoria: %s\n", prod.categoria);
   printf("Marca: %s\n", prod.marca);
   printf("Código: %s\n", prod.codigo);
-  printf("Precio de compra: %f\n", prod.precioCompra);
-  printf("Precio de venta: %f\n", prod.precioVenta);
+  printf("Precio de compra: %.2f\n", prod.precioCompra);
+  printf("Precio de venta: %.2f\n", prod.precioVenta);
   printf("----------------------\n");
 }
 
@@ -162,5 +170,10 @@ void actualizarProdPorVenta(char nombreProducto[20], int cantidad) {
       }
     }
   }
+}
+
+void agregarProducto(struct producto p) {
+    productos[contProductos] = p;
+  	contProductos++;
 }
 
